@@ -15,9 +15,13 @@ JOKE = (
 
 
 def main() -> None:
+    # The competition requires 1-280 characters on one line: fail loudly
+    # instead of writing an entry the gate would reject.
+    assert 1 <= len(JOKE) <= 280, f"joke is {len(JOKE)} chars, must be 1-280"
+    assert "\n" not in JOKE, "joke must be a single line"
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
-        f.write(JOKE)
+        f.write(JOKE + "\n")
 
 
 if __name__ == "__main__":
